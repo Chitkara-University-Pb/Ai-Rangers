@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock title %}
+{% block css %}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;600&display=swap');
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family:'Poppins', sans-serif;
+    background-color: black;
+}
+main{
+    margin:10px;
+}
+
+.container{
+    display: inline-flex;
+    justify-content: space-around;
+}
+
+.card{
+    display: inline-flex;
+    top: 0%;
+    left: 18%;
+    border: solid 1px white;
+    width:64%;
+    height:23%; 
+	overflow: hidden;
+	position: relative;
+}
+
+.image_con{
+    height: 70%;
+    width: 18%;
+    position: fixed;
+    top: 15%;
+    left: 0%;
+}
+
+.image_con2{
+    height: 70%;
+    width: 18%;
+    position: fixed;
+    top: 15%;
+    right: 0%;
+}
+
+.img2, .img3{
+    height: 100%;
+    width: 100%;
+}
+
+.img{
+    height: 100%;
+    width: 200px;
+}
+
+.card-content {
+    color: white;
+    margin-left: 8px;
+    height: 100%;
+}
+
+.card-content h3{
+    font-size: 2rem;
+}
+
+.card-content p{
+    font-size: 1rem;
+}
+
+.card-content a{
+    bottom: 0%;
+}
+
+header{
+    /* background-color: #373b69; */
+    background-color: black;
+    display: flex;      /* search will come after title */
+    justify-content: space-between; 
+    /* there will be space between title and search */
+    padding: 0.5rem;
+}
+.logo {
+    font-size: 25px;
+    font-weight: 600;
+    color: green;
+    padding: 0 15px;
+    margin-left: 500px;
+    margin-right: 500px;
+}
+
+.predict {
+    bottom: 0%;
+}
+
+{% endblock css %}
+{% block body %}
+{% load static %}
+
+
+<header>
+    <div class="logo" >
+        <h1>Kissaan.com</h1>
+    </div>
+</header>
+<main>
+    <div class="container">
+        <div class="image_con"><img src="/static/soil.avif" alt="wrong" class='img2'></div>
+        <div class="card-line">    
+            {% for j in crop|slice:":" %}
+                <div class="card">
+                    <div class="card-images">
+                        <img class="img" src='/media/{{j.crop_image}}' alt="My image">
+                        {% comment %} <i class="fas fa-search fa-4x "></i> {% endcomment %}
+                    </div>
+                    <div class="card-content">
+                        {% comment %} <a href="" class="card-link">
+                            <h3>{{j.crop_name}}</h3>
+                        </a> {% endcomment %}
+                        <h3>{{j.crop_name}}</h3>
+                        <br>
+                        <p>{{j.description}}</p>
+                        <a href="{% url 'prediction' %}" class="predict">PREDICT</a>
+                        {% comment %} <a href=""><i class="fa-solid fa-arrow-right "></i></a> {% endcomment %}
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        <div class="image_con2"><img src="/static/hand_soil.avif" alt="wrong" class="img3"></span>
+    </div>
+</main>
+{% endblock body %}
