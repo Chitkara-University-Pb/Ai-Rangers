@@ -79,13 +79,14 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
     <h3> Enter the following values to predict the price and demand of a particular month</h3>
 
      <!-- Main Input For Receiving Query to our ML -->
-    <form action="" method=""> {% comment %} {{ url_for('predict')}} {% endcomment %}
-    	<input type="text" name="Crop Name" placeholder="Crop Name" required="required" />
-        <input type="text" name="Price" placeholder="Price" required="required" />
-		<input type="text" name="Demand" placeholder="Demand" required="required" />
-        <input type="text" name="Month" placeholder="Month" required="required" />
+    <form action="result"> {% comment %} {{ url_for('predict')}} {% endcomment %}
+        {% csrf_token %}
+    	<input type="text" name="Crop_Name" placeholder="Crop Name" value={{name}} readonly>
+        <input type="text" name="Day" placeholder="Day" required="required" >
+        <input type="text" name="Month" placeholder="Month" required="required" >
+        <input type="text" name="Year" placeholder="Year" required="required" >
 
-        <button type="submit" class="btn">Predict</button>
+        <input type="submit" value='Predict'>
     </form>
 
    <br>
